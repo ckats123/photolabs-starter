@@ -13,6 +13,8 @@ const sampleDataForPhotoListItem = {
   username: "Joe Example",
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
+const samplePhotosData = new Array(10).fill(sampleDataForPhotoListItem);
+
 
 const App = () => (
   <div className="App">

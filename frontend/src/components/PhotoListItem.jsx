@@ -1,6 +1,7 @@
 // frontend/src/components/PhotoListItem.jsx
 import React from "react";
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   const { data } = props;
@@ -8,6 +9,7 @@ const PhotoListItem = (props) => {
 
   return (
     <article className="photo-list__item">
+      <PhotoFavButton />
       <img
         src={imageSource}
         alt={`Photo by ${username}`}
