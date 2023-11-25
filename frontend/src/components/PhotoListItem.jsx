@@ -5,25 +5,25 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   const { data } = props;
-  const { id, location, imageSource, username, profile } = data;
+  // const { id, location, imageSource, username, profile } = data;
 
   return (
     <article className="photo-list__item">
       <PhotoFavButton />
       <img
-        src={imageSource}
-        alt={`Photo by ${username}`}
-        className="photo-list__user-profile"
+        src={data.urls.regular}
+        alt={`Photo by ${data.user.username}`}
+        className="photo-list__image"
       />
       <div className="photo-list__user-details">
         <img
-          src={profile}
-          alt={`Profile of ${username}`}
+          src={data.user.profile}
+          alt={`Profile of ${data.user.username}`}
           className="photo-list__user-profile"
         />
-        <div className="photo-list__user-info">{`Photo ID: ${id}`}</div>
-        <div className="photo-list__user-username">{`Photographer: ${username}`}</div>
-        <div className="photo-list__user-location">{`Location: ${location.city}, ${location.country}`}</div>
+        <div className="photo-list__user-info">{`Photo ID: ${data.id}`}</div>
+        <div className="photo-list__user-username">{`Photographer: ${data.user.username}`}</div>
+        <div className="photo-list__user-location">{`Location: ${data.location.city}, ${data.location.country}`}</div>
       </div>
     </article>
   );
