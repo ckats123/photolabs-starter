@@ -2,15 +2,15 @@
 import React from "react";
 import PhotoList from "./components/PhotoList";
 import TopNavigationBar from "./components/TopNavigationBar";
+import topics from "mocks/topics";
+import photos from "mocks/photos";
 
 import "./App.scss";
+import HomeRoute from "components/HomeRoute";
 
 const App = () => (
   <div className="App">
-    {}
-    <TopNavigationBar />
-    <PhotoList />
-    
+    <HomeRoute topics={topics} photos={photos} />
   </div>
 );
 
