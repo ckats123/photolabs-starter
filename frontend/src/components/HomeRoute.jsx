@@ -12,3 +12,5 @@ const HomeRoute = () => {
     </div>
   );
 };
+
+export default HomeRoute;
