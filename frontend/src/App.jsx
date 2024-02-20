@@ -4,7 +4,7 @@ import React from "react";
 // import TopNavigationBar from "./components/TopNavigationBar";
 
 import "./App.scss";
-import HomeRoute from "./components/HomeRoute";
+import HomeRoute from "./routes/HomeRoute";
 
 const App = () => {
   return (
