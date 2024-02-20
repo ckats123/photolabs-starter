@@ -6,10 +6,13 @@ import PhotoFavButton from "./PhotoFavButton";
 const PhotoListItem = (props) => {
   const { data } = props;
   // const { id, location, imageSource, username, profile } = data;
-
+  const isFavorited = props.favoritedPhotos.includes(data.id);
   return (
     <article className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton
+        isFavorited={isFavorited}
+        setFavoritedPhotos={props.setFavoritedPhotos}
+      />
       <img
         src={data.urls.regular}
         alt={`Photo by ${data.user.username}`}
