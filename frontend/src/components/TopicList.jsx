@@ -22,12 +22,11 @@ const sampleDataForTopicList = [
 ];
 
 const TopicList = () => {
+  const { data } = props;
   const topics = sampleDataForTopicList.map((topicData) => (
     <TopicListItem key={topicData.id} topicData={topicData} />
   ));
   return <div className="top-nav-bar__topic-list">{topics}</div>;
 };
-
-
 
 export default TopicList;
