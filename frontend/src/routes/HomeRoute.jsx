@@ -6,7 +6,7 @@ import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
-  const { photos, topics } = props;
+  const { photos, topics, modalVisibility, setModalVisibility } = props;
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
 
   useEffect(() => {
@@ -19,11 +19,13 @@ const HomeRoute = (props) => {
   }, []);
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} />
+      <TopNavigation topics={topics} isFavorited={favoritedPhotos.length > 0} />
       <PhotoList
         photos={photos}
         favoritedPhotos={favoritedPhotos}
         setFavoritedPhotos={setFavoritedPhotos}
+        modalVisibility={modalVisibility}
+        setModalVisibility={setModalVisibility}
       />
     </div>
   );

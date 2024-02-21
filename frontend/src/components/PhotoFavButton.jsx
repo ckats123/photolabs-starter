@@ -6,14 +6,14 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton(props) {
   const [isFav, setIsFav] = useState(props.isFavorited);
   const handleFavClick = useCallback(() => {
-    setIsFav((prevIsFav) => !prevIsFav);
-    props.setFavoritedPhotos((prevFavoritedPhotos) => {
-      if (isFav) {
-        return prevFavoritedPhotos.filter((photoId) => photoId !== props.photoId);
-      }
-      return [...prevFavoritedPhotos, props.photoId];
-    });
-  }, []);
+    if (isFav) {
+      props.removeFavoritedPhoto(props.photoData);
+    } else {
+      props.addFavoritedPhoto(props.photoData);
+    }
+    setIsFav(!isFav);
+  }
+  , [isFav, props]);
   return (
     <div className="photo-list__fav-icon" onClick = {handleFavClick}>
       <div className="photo-list__fav-icon-svg">
