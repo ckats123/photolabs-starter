@@ -3,10 +3,16 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
+
 const PhotoListItem = (props) => {
-  const { data } = props;
+  const { data, favoritedPhotos, setFavoritedPhotos, modalVisibility, setModalVisibility } = props;
   // const { id, location, imageSource, username, profile } = data;
-  const isFavorited = props.favoritedPhotos.includes(data.id);
+  const isFavorited = favoritedPhotos.some((photo) => photo.id === data.id);
+
+  const openModal = () => {
+    setModalVisibility(true);
+  }
+
   return (
     <article className="photo-list__item">
       <PhotoFavButton
@@ -17,6 +23,7 @@ const PhotoListItem = (props) => {
         src={data.urls.regular}
         alt={`Photo by ${data.user.username}`}
         className="photo-list__image"
+        onClick={openModal}
       />
       <div className="photo-list__user-details">
         <img
