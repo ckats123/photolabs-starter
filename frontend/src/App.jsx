@@ -16,7 +16,7 @@ const App = () => {
     <div className="App">
       {/* <TopNavigationBar /> */}
       <HomeRoute photos={photos} topics={topics} modalVisibility={showModal} setModalVisibility={setShowModal} setActivePhoto={setActivePhoto} />
-      <PhotoDetailsModal modalVisibility={showModal} setModalVisibility={setShowModal} activePhoto={activePhoto} />
+      <PhotoDetailsModal modalVisibility={showModal} setModalVisibility={setShowModal} activePhoto={activePhoto} setActivePhoto={setActivePhoto} />
     </div>
   );
 };

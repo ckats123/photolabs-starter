@@ -4,7 +4,16 @@ import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = (props) => {
   const photos = props.photos.map((photo) => {
-    return <PhotoListItem key={photo.id} data={photo} favoritedPhotos={props.favoritedPhotos} setFavoritedPhotos={props.setFavoritedPhotos} modalVisibility={props.modalVisibility} setModalVisibility={props.setModalVisibility} />; 
+    return <PhotoListItem 
+    key={photo.id} 
+    data={photo} 
+    favoritedPhotos={props.favoritedPhotos} 
+    setFavoritedPhotos={props.setFavoritedPhotos} 
+    modalVisibility={props.modalVisibility} 
+    setModalVisibility={props.setModalVisibility} 
+    activePhoto={props.activePhoto}
+    setActivePhoto={props.setActivePhoto}
+    />; 
   });
   return <ul className="photo-list">{photos}</ul>;
 }
