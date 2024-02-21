@@ -28,6 +28,7 @@ const HomeRoute = (props) => {
         setModalVisibility={setModalVisibility}
       />
     </div>
+
   );
 };
 
