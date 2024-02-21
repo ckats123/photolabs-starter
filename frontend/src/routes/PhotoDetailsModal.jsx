@@ -11,11 +11,14 @@ const PhotoDetailsModal = (props) => {
 
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button">
-        <img src={closeSymbol} alt="close symbol" onClick={() => setModalVisibility(false)} />
+      <button
+        className="photo-details-modal__close-button"
+        onClick={() => setModalVisibility(false)}
+      >
+        <img src={closeSymbol} alt="close symbol" />
       </button>
     </div>
-  )
+  );
 };
 
 export default PhotoDetailsModal;

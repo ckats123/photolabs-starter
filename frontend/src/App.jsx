@@ -11,11 +11,12 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const App = () => {
   const [showModal, setShowModal] = React.useState(false);
+  const [activePhoto, setActivePhoto] = React.useState(null);
   return (
     <div className="App">
       {/* <TopNavigationBar /> */}
-      <HomeRoute photos={photos} topics={topics} modalVisibility={showModal} setModalVisibility={setShowModal} />
-      <PhotoDetailsModal modalVisibility={showModal} setModalVisibility={setShowModal} />
+      <HomeRoute photos={photos} topics={topics} modalVisibility={showModal} setModalVisibility={setShowModal} setActivePhoto={setActivePhoto} />
+      <PhotoDetailsModal modalVisibility={showModal} setModalVisibility={setShowModal} activePhoto={activePhoto} />
     </div>
   );
 };
