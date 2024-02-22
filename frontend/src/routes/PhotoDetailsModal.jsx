@@ -34,7 +34,7 @@ const PhotoDetailsModal = (props) => {
         />
 
         <img
-          src={activePhoto.urls.regular}
+          src={activePhoto.urls.full}
           alt={activePhoto.alt_description}
           className="photo-details-modal__image"
         />

@@ -4,7 +4,8 @@ import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = (props) => {
   const photos = props.photos.map((photo) => {
-    return <PhotoListItem 
+    return <PhotoListItem
+    photos = {props.photos} 
     key={photo.id} 
     data={photo} 
     favoritedPhotos={props.favoritedPhotos} 

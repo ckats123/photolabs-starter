@@ -6,8 +6,14 @@ import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
-  const { photos, topics, modalVisibility, setModalVisibility } = props;
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
+  const {
+    photos,
+    topics,
+    setModalVisibility,
+    favoritedPhotos,
+    setFavoritedPhotos,
+    setActivePhoto,
+  } = props;
 
   useEffect(() => {
     const favoritedPhotos = JSON.parse(
@@ -19,16 +25,18 @@ const HomeRoute = (props) => {
   }, []);
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} isFavorited={favoritedPhotos.length > 0} />
+      <TopNavigation
+        topics={topics}
+        isFavorited={favoritedPhotos.length > 0}
+      />
       <PhotoList
         photos={photos}
         favoritedPhotos={favoritedPhotos}
         setFavoritedPhotos={setFavoritedPhotos}
-        modalVisibility={modalVisibility}
         setModalVisibility={setModalVisibility}
+        setActivePhoto={setActivePhoto}
       />
     </div>
-
   );
 };
 

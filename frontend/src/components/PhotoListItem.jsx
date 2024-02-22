@@ -5,11 +5,11 @@ import PhotoFavButton from "./PhotoFavButton";
 
 
 const PhotoListItem = (props) => {
-  const { 
+  const {
+    photos, 
     data, 
     favoritedPhotos, 
     setFavoritedPhotos, 
-    modalVisibility, 
     setModalVisibility,
     activePhoto,
     setActivePhoto
@@ -19,15 +19,20 @@ const PhotoListItem = (props) => {
 
   const openModal = () => {
     setModalVisibility(true);
-    setActivePhoto(data);
+    const completePhotoData = photos.find((photo) => photo.id === data.id);
+    setActivePhoto(completePhotoData);
   }
 
   return (
     <article className="photo-list__item">
+
       <PhotoFavButton
         isFavorited={isFavorited}
         setFavoritedPhotos={props.setFavoritedPhotos}
+        favoritedPhotos={favoritedPhotos}
+        photoData={data}
       />
+
       <img
         src={data.urls.regular}
         alt={`Photo by ${data.user.username}`}
