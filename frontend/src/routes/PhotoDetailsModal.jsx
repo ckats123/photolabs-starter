@@ -17,21 +17,17 @@ const PhotoDetailsModal = (props) => {
     return null;
   }
 
-
   // Logging activePhoto to the console
   console.log(activePhoto);
 
   return (
     <div className="photo-details-modal">
+      
       <button
         className="photo-details-modal__close-button"
         onClick={() => setModalVisibility(false)}
       >
-        <img
-          src={closeSymbol}
-          alt="close symbol"
-          onClick={handleClose}
-        />
+        <img src={closeSymbol} alt="close symbol" />
       </button>
 
       <div className="photo-details-modal__images">
