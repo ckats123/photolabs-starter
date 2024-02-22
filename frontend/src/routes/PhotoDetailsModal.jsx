@@ -1,5 +1,4 @@
 import React from "react";
-
 import "../styles/PhotoDetailsModal.scss";
 import "../styles/PhotoFavButton.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
@@ -12,6 +11,7 @@ const PhotoDetailsModal = (props) => {
     activePhoto,
     modalVisibility,
     favoritedPhotos,
+    toggleFavourite, // Added prop
   } = props;
 
   // Adding a null check for activePhoto
@@ -33,9 +33,9 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__images">
         <PhotoFavButton
-          toggleFavourite={activePhoto.toggleFavourite}
+          toggleFavourite={toggleFavourite} // Use the prop from the parent
           photoId={activePhoto.id}
-          favorites={favoritedPhotos} // Updated prop name
+          favorites={favoritedPhotos}
         />
 
         <img
@@ -67,7 +67,7 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal__images">
           <PhotoList
             photos={activePhoto.similar_photos}
-            favorites={favoritedPhotos} // Updated prop name
+            favorites={favoritedPhotos}
           />
         </div>
       </div>
