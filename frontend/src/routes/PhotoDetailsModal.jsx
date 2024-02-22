@@ -12,6 +12,9 @@ const PhotoDetailsModal = (props) => {
     return null;
   }
 
+  // Logging activePhoto to the console
+  console.log(activePhoto);
+
   return (
     <div className="photo-details-modal">
       <button
