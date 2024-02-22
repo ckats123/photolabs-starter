@@ -7,7 +7,12 @@ import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
-  const { setModalVisibility, activePhoto } = props;
+  const {
+    setModalVisibility,
+    activePhoto,
+    modalVisibility,
+    favoritedPhotos,
+  } = props;
 
   // Adding a null check for activePhoto
   if (!activePhoto || !modalVisibility) {
@@ -30,7 +35,7 @@ const PhotoDetailsModal = (props) => {
         <PhotoFavButton
           toggleFavourite={activePhoto.toggleFavourite}
           photoId={activePhoto.id}
-          favourites={activePhoto.favourites}
+          favorites={favoritedPhotos} // Updated prop name
         />
 
         <img
@@ -62,7 +67,7 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal__images">
           <PhotoList
             photos={activePhoto.similar_photos}
-            favourites={activePhoto.favourites}
+            favorites={favoritedPhotos} // Updated prop name
           />
         </div>
       </div>
