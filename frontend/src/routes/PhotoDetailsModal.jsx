@@ -8,9 +8,6 @@ import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
   const { setModalVisibility, activePhoto } = props;
-  // if (!modalVisibility) {
-  //   return null;
-  // }
 
   // Adding a null check for activePhoto
   if (!activePhoto || !modalVisibility) {
@@ -30,7 +27,12 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <div className="photo-details-modal__images">
-        <PhotoFavButton />
+        <PhotoFavButton
+          toggleFavourite={activePhoto.toggleFavourite}
+          photoId={activePhoto.id}
+          favourites={activePhoto.favourites}
+        />
+
         <img
           src={activePhoto.urls.regular}
           alt={activePhoto.alt_description}
@@ -58,7 +60,10 @@ const PhotoDetailsModal = (props) => {
           Similar Photos
         </div>
         <div className="photo-details-modal__images">
-          <PhotoList photos={activePhoto.similar_photos} />
+          <PhotoList
+            photos={activePhoto.similar_photos}
+            favourites={activePhoto.favourites}
+          />
         </div>
       </div>
     </div>
