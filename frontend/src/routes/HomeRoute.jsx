@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-
 import TopNavigation from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
-
 import "../styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
@@ -15,14 +13,24 @@ const HomeRoute = (props) => {
     setActivePhoto,
   } = props;
 
+  // Retrieve favoritedPhotos from local storage on mount
   useEffect(() => {
-    const favoritedPhotos = JSON.parse(
+    const storedFavoritedPhotos = JSON.parse(
       localStorage.getItem("favoritedPhotos")
     );
-    if (favoritedPhotos) {
-      setFavoritedPhotos(favoritedPhotos);
+    if (storedFavoritedPhotos) {
+      setFavoritedPhotos(storedFavoritedPhotos);
     }
   }, []);
+
+  // Update local storage whenever favoritedPhotos changes
+  useEffect(() => {
+    localStorage.setItem(
+      "favoritedPhotos",
+      JSON.stringify(favoritedPhotos)
+    );
+  }, [favoritedPhotos]);
+
   return (
     <div className="home-route">
       <TopNavigation
