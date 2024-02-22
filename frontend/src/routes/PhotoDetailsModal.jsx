@@ -22,7 +22,6 @@ const PhotoDetailsModal = (props) => {
 
   return (
     <div className="photo-details-modal">
-      
       <button
         className="photo-details-modal__close-button"
         onClick={() => setModalVisibility(false)}
@@ -53,6 +52,13 @@ const PhotoDetailsModal = (props) => {
               {activePhoto.user.location.country}
             </div>
           </div>
+        </div>
+
+        <div className="photo-details-modal__header">
+          Similar Photos
+        </div>
+        <div className="photo-details-modal__images">
+          <PhotoList photos={activePhoto.similar_photos} />
         </div>
       </div>
     </div>
