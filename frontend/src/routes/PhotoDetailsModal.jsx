@@ -7,10 +7,13 @@ import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
   const {
+    photos,
     setModalVisibility,
     activePhoto,
+    setActivePhoto,
     modalVisibility,
     favoritedPhotos,
+    setFavoritedPhotos,
     toggleFavourite, // Added prop
   } = props;
 
@@ -21,6 +24,10 @@ const PhotoDetailsModal = (props) => {
 
   // Logging activePhoto to the console
   console.log(activePhoto);
+
+  const addFavorite = (photoId) => {
+    setFavoritedPhotos([...favoritedPhotos, photoId]);
+  };
 
   return (
     <div className="photo-details-modal">
@@ -36,6 +43,7 @@ const PhotoDetailsModal = (props) => {
           toggleFavourite={toggleFavourite} // Use the prop from the parent
           photoId={activePhoto.id}
           favorites={favoritedPhotos}
+          addFavorite={setFavoritedPhotos}
         />
 
         <img
