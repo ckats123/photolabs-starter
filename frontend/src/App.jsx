@@ -1,34 +1,33 @@
-// frontend/src/App.jsx
-import React from "react";
-
-// import TopNavigationBar from "./components/TopNavigationBar";
-
+import React, { useState } from "react";
 import "./App.scss";
 import HomeRoute from "./routes/HomeRoute";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
-import PhotoDetailsModal from "routes/PhotoDetailsModal";
+import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 
 const App = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const [activePhoto, setActivePhoto] = React.useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [activePhoto, setActivePhoto] = useState(null);
+  const [favoritedPhotos, setFavoritedPhotos] = useState([]); // Initialize with an appropriate default value
+
   return (
     <div className="App">
-      <HomeRoute photos={photos} 
-      topics={topics} 
-      setModalVisibility={setShowModal} 
-      setActivePhoto={setActivePhoto}
-      favoritedPhotos={favoritedPhotos}
-      setFavoritedPhotos={setFavoritedPhotos}
+      <HomeRoute
+        photos={photos}
+        topics={topics}
+        setModalVisibility={setShowModal}
+        setActivePhoto={setActivePhoto}
+        favoritedPhotos={favoritedPhotos}
+        setFavoritedPhotos={setFavoritedPhotos}
       />
-      <PhotoDetailsModal 
-      photos = {photos}
-      modalVisibility={showModal} 
-      setModalVisibility={setShowModal} 
-      activePhoto={activePhoto} 
-      setActivePhoto={setActivePhoto} 
-      favoritedPhotos={favoritedPhotos}
-      setFavoritedPhotos={setFavoritedPhotos}
+      <PhotoDetailsModal
+        photos={photos}
+        modalVisibility={showModal}
+        setModalVisibility={setShowModal}
+        activePhoto={activePhoto}
+        setActivePhoto={setActivePhoto}
+        favoritedPhotos={favoritedPhotos}
+        setFavoritedPhotos={setFavoritedPhotos}
       />
     </div>
   );
