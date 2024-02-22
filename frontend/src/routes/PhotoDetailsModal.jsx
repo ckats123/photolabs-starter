@@ -8,9 +8,15 @@ import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
   const { setModalVisibility, activePhoto } = props;
-  if (!modalVisibility) {
+  // if (!modalVisibility) {
+  //   return null;
+  // }
+
+  // Adding a null check for activePhoto
+  if (!activePhoto || !modalVisibility) {
     return null;
   }
+
 
   // Logging activePhoto to the console
   console.log(activePhoto);
