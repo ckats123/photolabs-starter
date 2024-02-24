@@ -11,8 +11,7 @@ const PhotoDetailsModal = (props) => {
     activePhoto,
     modalVisibility,
     favoritedPhotos,
-    setFavoritedPhotos,
-    toggleFavourite, // Added prop
+    toggleFavourite, // Updated prop name
   } = props;
 
   // Adding a null check for activePhoto
@@ -22,10 +21,6 @@ const PhotoDetailsModal = (props) => {
 
   // Logging activePhoto to the console
   console.log(activePhoto);
-
-  const addFavorite = (photoId) => {
-    setFavoritedPhotos([...favoritedPhotos, photoId]);
-  };
 
   return (
     <div className="photo-details-modal">
@@ -38,7 +33,7 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__images">
         <PhotoFavButton
-          addFavorite={addFavorite} // Pass the addFavorite function
+          toggleFavourite={toggleFavourite} // Use the prop consistently
           photoId={activePhoto.id}
           favorites={favoritedPhotos}
         />
