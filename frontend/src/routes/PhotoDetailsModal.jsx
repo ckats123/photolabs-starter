@@ -7,10 +7,8 @@ import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
   const {
-    photos,
     setModalVisibility,
     activePhoto,
-    setActivePhoto,
     modalVisibility,
     favoritedPhotos,
     setFavoritedPhotos,
@@ -40,10 +38,9 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__images">
         <PhotoFavButton
-          toggleFavourite={toggleFavourite} // Use the prop from the parent
+          addFavorite={addFavorite} // Pass the addFavorite function
           photoId={activePhoto.id}
           favorites={favoritedPhotos}
-          addFavorite={setFavoritedPhotos}
         />
 
         <img
