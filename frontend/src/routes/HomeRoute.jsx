@@ -9,18 +9,19 @@ const HomeRoute = (props) => {
     photos,
     topics,
     setModalVisibility,
-    favoritedPhotos, // Updated prop name
+    favoritedPhotos,
     setFavoritedPhotos,
     setActivePhoto,
   } = props;
 
   // Retrieve favoritedPhotos from local storage on mount
   useEffect(() => {
-    const storedFavoritedPhotos = JSON.parse(
-      localStorage.getItem("favoritedPhotos")
-    );
-    if (storedFavoritedPhotos) {
-      setFavoritedPhotos(storedFavoritedPhotos);
+    const storedFavoritedPhotos =
+      localStorage.getItem("favoritedPhotos");
+
+    // Check if storedFavoritedPhotos is not null before parsing
+    if (storedFavoritedPhotos !== null) {
+      setFavoritedPhotos(JSON.parse(storedFavoritedPhotos));
     }
   }, []);
 
