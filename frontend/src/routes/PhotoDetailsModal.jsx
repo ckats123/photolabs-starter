@@ -1,3 +1,4 @@
+// PhotoDetailsModal.jsx
 import React from "react";
 import "../styles/PhotoDetailsModal.scss";
 import "../styles/PhotoFavButton.scss";
@@ -68,7 +69,7 @@ const PhotoDetailsModal = (props) => {
           <PhotoList
             photos={activePhoto.similar_photos}
             favorites={favoritedPhotos}
-            toggleFavourite={toggleFavourite} // Pass down the toggleFavourite function
+            toggleFavourite={toggleFavourite}
           />
         </div>
       </div>
