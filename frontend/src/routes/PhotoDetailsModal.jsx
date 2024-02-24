@@ -68,7 +68,7 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal__images">
           <PhotoList
             photos={activePhoto.similar_photos}
-            favorites={favoritedPhotos}
+            favoritedPhotos={favoritedPhotos} // Corrected prop name
             toggleFavourite={toggleFavourite}
           />
         </div>
