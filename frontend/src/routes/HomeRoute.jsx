@@ -19,9 +19,24 @@ const HomeRoute = (props) => {
     const storedFavoritedPhotos =
       localStorage.getItem("favoritedPhotos");
 
-    // Check if storedFavoritedPhotos is not null before parsing
+    // Check if storedFavoritedPhotos is not null and is an array before parsing
     if (storedFavoritedPhotos !== null) {
-      setFavoritedPhotos(JSON.parse(storedFavoritedPhotos));
+      try {
+        const parsedFavoritedPhotos = JSON.parse(
+          storedFavoritedPhotos
+        );
+
+        if (Array.isArray(parsedFavoritedPhotos)) {
+          setFavoritedPhotos(parsedFavoritedPhotos);
+        } else {
+          console.error("Stored favorited photos is not an array.");
+        }
+      } catch (error) {
+        console.error(
+          "Error parsing stored favorited photos:",
+          error
+        );
+      }
     }
   }, []);
 
@@ -37,7 +52,9 @@ const HomeRoute = (props) => {
     <div className="home-route">
       <TopNavigation
         topics={topics}
-        isFavorited={favoritedPhotos.length > 0}
+        isFavorited={
+          Array.isArray(favoritedPhotos) && favoritedPhotos.length > 0
+        }
       />
       <PhotoList
         photos={photos}
