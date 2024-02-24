@@ -33,7 +33,7 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__images">
         <PhotoFavButton
-          toggleFavourite={toggleFavourite} // Use the prop consistently
+          toggleFavourite={toggleFavourite} // Updated prop name
           photoId={activePhoto.id}
           favorites={favoritedPhotos}
         />
