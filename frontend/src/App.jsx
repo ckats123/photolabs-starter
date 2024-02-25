@@ -16,18 +16,14 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        setModalVisibility={setPhotoSelected}
-        setActivePhoto={setPhotoSelected}
-        favoritedPhotos={state.favoritedPhotos}
+        {...state}
         updateToFavPhotoIds={updateToFavPhotoIds}
+        setPhotoSelected={setPhotoSelected}
       />
       <PhotoDetailsModal
-        modalVisibility={state.showModal}
-        setModalVisibility={onClosePhotoDetailsModal}
-        activePhoto={state.activePhoto}
-        setActivePhoto={setPhotoSelected}
-        favoritedPhotos={state.favoritedPhotos}
+        {...state}
         updateToFavPhotoIds={updateToFavPhotoIds}
+        onClosePhotoDetailsModal={onClosePhotoDetailsModal}
       />
     </div>
   );

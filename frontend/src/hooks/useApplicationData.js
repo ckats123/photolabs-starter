@@ -1,25 +1,16 @@
 // hooks/useApplicationData.js
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
 const useApplicationData = () => {
   const [state, setState] = useState({
-    photos: [],
-    topics: [],
+    photos,
+    topics,
     activePhoto: null,
     showModal: false,
     favoritedPhotos: [],
   });
-
-  useEffect(() => {
-    // Simulating data fetching from an API
-    setState((prev) => ({
-      ...prev,
-      photos,
-      topics,
-    }));
-  }, []);
 
   const setPhotoSelected = (photo) => {
     setState((prev) => ({
