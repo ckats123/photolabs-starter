@@ -19,11 +19,11 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        photos={state.photos}
-        topics={state.topics}
+        photos={photos}
+        topics={topics}
         setModalVisibility={setPhotoSelected}
         setActivePhoto={setPhotoSelected}
-        favoritedPhotos={state.favoritedPhotos}
+        favoritedPhotos={favoritedPhotos}
         updateToFavPhotoIds={updateToFavPhotoIds}
       />
       <PhotoDetailsModal
