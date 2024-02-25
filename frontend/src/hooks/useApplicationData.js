@@ -37,18 +37,9 @@ const useApplicationData = () => {
     }));
   };
 
-  // Destructuring state for cleaner code
-  const { photos, topics, activePhoto, showModal, favoritedPhotos } =
-    state;
-
+  // Return the state directly
   return {
-    state: {
-      photos,
-      topics,
-      activePhoto,
-      showModal,
-      favoritedPhotos,
-    },
+    state,
     setPhotoSelected,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
