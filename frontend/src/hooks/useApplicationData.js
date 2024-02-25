@@ -1,6 +1,5 @@
-//  useApplicationData.js
 // hooks/useApplicationData.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
@@ -12,6 +11,15 @@ const useApplicationData = () => {
     showModal: false,
     favoritedPhotos: [],
   });
+
+  useEffect(() => {
+    // Simulating data fetching from an API
+    setState((prev) => ({
+      ...prev,
+      photos,
+      topics,
+    }));
+  }, []);
 
   const setPhotoSelected = (photo) => {
     setState((prev) => ({
@@ -30,10 +38,6 @@ const useApplicationData = () => {
     }));
   };
 
-  const onLoadTopics = () => {
-    return state.topics;
-  };
-
   const onClosePhotoDetailsModal = () => {
     setState((prev) => ({
       ...prev,
@@ -44,9 +48,8 @@ const useApplicationData = () => {
 
   return {
     state,
-   setPhotoSelected,
+    setPhotoSelected,
     updateToFavPhotoIds,
-    onLoadTopics,
     onClosePhotoDetailsModal,
   };
 };
