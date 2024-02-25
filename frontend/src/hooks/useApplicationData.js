@@ -1,7 +1,7 @@
 //  useApplicationData.js
 // hooks/useApplicationData.js
-import { useState, useEffect } from "react";
-import photos from "mocks/photos"; 
+import { useState } from "react";
+import photos from "mocks/photos";
 import topics from "mocks/topics";
 
 const useApplicationData = () => {
@@ -13,25 +13,13 @@ const useApplicationData = () => {
     favoritedPhotos: [],
   });
 
-  useEffect(() => {
-  
-    const fetchData = async () => {
-      try {
-        const fetchedPhotos = await fetchPhotos(); // Replace with actual function to fetch photos
-        const fetchedTopics = await fetchTopics(); // Replace with actual function to fetch topics
-
-        setState((prev) => ({
-          ...prev,
-          photos: fetchedPhotos,
-          topics: fetchedTopics,
-        }));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []); // 
+  const setPhotoSelected = (photo) => {
+    setState((prev) => ({
+      ...prev,
+      activePhoto: photo,
+      showModal: true,
+    }));
+  };
 
   const updateToFavPhotoIds = (photoId) => {
     setState((prev) => ({
@@ -42,12 +30,8 @@ const useApplicationData = () => {
     }));
   };
 
-  const setPhotoSelected = (photo) => {
-    setState((prev) => ({
-      ...prev,
-      activePhoto: photo,
-      showModal: true,
-    }));
+  const onLoadTopics = () => {
+    return state.topics;
   };
 
   const onClosePhotoDetailsModal = () => {
@@ -60,8 +44,9 @@ const useApplicationData = () => {
 
   return {
     state,
+   setPhotoSelected,
     updateToFavPhotoIds,
-    setPhotoSelected,
+    onLoadTopics,
     onClosePhotoDetailsModal,
   };
 };
