@@ -8,7 +8,8 @@ const HomeRoute = (props) => {
   const {
     photos,
     topics,
-    setModalVisibility,
+    updateToFavPhotoIds,
+    onPhotoClick,
     favoritedPhotos,
     setFavoritedPhotos,
     setActivePhoto,
@@ -59,9 +60,8 @@ const HomeRoute = (props) => {
       <PhotoList
         photos={photos}
         favoritedPhotos={favoritedPhotos}
-        setFavoritedPhotos={setFavoritedPhotos}
-        setModalVisibility={setModalVisibility}
-        setActivePhoto={setActivePhoto}
+        updateToFavPhotoIds={updateToFavPhotoIds}
+        onPhotoClick={onPhotoClick}
       />
     </div>
   );

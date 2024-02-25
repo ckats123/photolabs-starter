@@ -5,15 +5,22 @@ import "../styles/PhotoFavButton.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
+import { on } from "events";
 
 const PhotoDetailsModal = (props) => {
   const {
-    setModalVisibility,
-    activePhoto,
-    modalVisibility,
+    photos,
     favoritedPhotos,
+    activePhoto,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
+    modalVisibility,
     toggleFavourite,
   } = props;
+
+  const handleCloseModal = () => {
+    onClosePhotoDetailsModal();
+  }
 
   // Adding a null check for activePhoto
   if (!activePhoto || !modalVisibility) {
@@ -34,8 +41,8 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__images">
         <PhotoFavButton
-          toggleFavourite={toggleFavourite}
-          photoId={activePhoto.id}
+          updateToFavPhotoIds={updateToFavPhotoIds}
+          photo={activePhoto}
           favorites={favoritedPhotos}
         />
 
@@ -68,8 +75,9 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal__images">
           <PhotoList
             photos={activePhoto.similar_photos}
-            favoritedPhotos={favoritedPhotos} // Corrected prop name
-            toggleFavourite={toggleFavourite}
+            favoritedPhotos={favoritedPhotos} 
+            updateToFavPhotoIds={updateToFavPhotoIds}
+            onPhotoSelect={onPhotoSelect}
           />
         </div>
       </div>

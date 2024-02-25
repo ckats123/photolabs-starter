@@ -4,27 +4,24 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const { photos, favoritedPhotos, addFavoritedPhoto } = props;
+  const { photos, favoritedPhotos, updateToFavPhotoIds } = props;
 
   const [isFav, setIsFav] = useState(
     favoritedPhotos.some((photo) => photo.id === photos.id)
   );
 
+
   useEffect(() => {
-    setIsFav(favoritedPhotos.some((photo) => photo.id === photos.id));
+    setIsFav(
+      favoritedPhotos.some((photo) => photo.id === photos.id)
+    );
   }
   , [favoritedPhotos, photos.id]);
-  
+
 
   const handleFavClick = useCallback(() => {
-    if (isFav) {
-      props.removeFavoritedPhoto(props.photoData);
-    } else {
-      props.addFavoritedPhoto(props.photoData);
-    }
-    setIsFav(!isFav);
-  }
-  , [isFav, props]);
+    updateToFavPhotoIds(photos.id);
+  }, [updateToFavPhotoIds, photos.id]);
 
 
   return (
