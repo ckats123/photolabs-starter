@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import TopNavigation from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
+import PhotoFavButton from "components/PhotoFavButton";
 
 const HomeRoute = (props) => {
   const {
@@ -48,7 +49,9 @@ const HomeRoute = (props) => {
       JSON.stringify(favoritedPhotos)
     );
   }, [favoritedPhotos]);
-
+  //PhotoFavButton is called in PhotoListItem
+  // yes..
+  // we need to inspect the props that are passed down to it
   return (
     <div className="home-route">
       <TopNavigation
@@ -63,6 +66,7 @@ const HomeRoute = (props) => {
         updateToFavPhotoIds={updateToFavPhotoIds}
         onPhotoClick={onPhotoClick}
       />
+      
     </div>
   );
 };

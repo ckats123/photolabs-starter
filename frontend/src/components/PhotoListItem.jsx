@@ -28,7 +28,7 @@ const PhotoListItem = (props) => {
        updateToFavPhotoIds={updateToFavPhotoIds}
         setFavoritedPhotos={props.setFavoritedPhotos}
         favoritedPhotos={favoritedPhotos}
-        photoData={data}
+        photoData={data} 
       />
 
       <img

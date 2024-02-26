@@ -5,8 +5,8 @@ import topics from "mocks/topics";
 
 const useApplicationData = () => {
   const [state, setState] = useState({
-    photos,
-    topics,
+    photos: photos,
+    topics: topics,
     activePhoto: null,
     showModal: false,
     favoritedPhotos: [],
@@ -37,16 +37,20 @@ const useApplicationData = () => {
     }));
   };
 
+//it overides the import at the top
   // Destructuring state directly in the return statement
-  const { photos, topics, activePhoto, showModal, favoritedPhotos } =
+  
+  // i see, so the below is okay? and just fix app.js?
+  //yes
+  //you can siply pass the state to the returned object
+  const { activePhoto, showModal, favoritedPhotos } =
     state;
 
   return {
-    photos,
-    topics,
-    activePhoto,
-    showModal,
-    favoritedPhotos,
+    state,// the entire state is returned
+    // activePhoto,
+    // showModal,
+    // favoritedPhotos,
     setPhotoSelected,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,

@@ -15,8 +15,7 @@ const App = () => {
 
   const { photos, topics, activePhoto, showModal, favoritedPhotos } =
     state;
-
-  return (
+return (
     <div className="App">
       <HomeRoute
         photos={photos}
@@ -25,6 +24,7 @@ const App = () => {
         setActivePhoto={setPhotoSelected}
         favoritedPhotos={favoritedPhotos}
         updateToFavPhotoIds={updateToFavPhotoIds}
+        setFavoritedPhotos={setPhotoSelected}
       />
       <PhotoDetailsModal
         photos={state.photos}
@@ -32,6 +32,7 @@ const App = () => {
         setActivePhoto={setPhotoSelected}
         favoritedPhotos={state.favoritedPhotos}
         updateToFavPhotoIds={updateToFavPhotoIds}
+        setFavoritedPhotos={setPhotoSelected}
       />
     </div>
   );
