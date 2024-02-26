@@ -48,9 +48,14 @@ const useApplicationData = () => {
 
   return {
     state,// the entire state is returned
-    // activePhoto,
-    // showModal,
-    // favoritedPhotos,
+    // ok, so the bottom can be deleted? 
+    //yes please, except the functions
+    //the functions are not part of the state, yes y
+
+
+    activePhoto,
+    showModal,
+    favoritedPhotos,
     setPhotoSelected,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
