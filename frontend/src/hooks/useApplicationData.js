@@ -103,21 +103,27 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
   };
 
-  //close photo details modal
-  // http://localhost:8001/api/topics/photos/:topic_id
-  const onClosePhotoDetailsModal = (newTopic) => {
-    fetch(`/api/topics/photos/${newTopic.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({
-          type: ACTIONS.SET_PHOTO_DATA,
-          payload: { data },
+    const onLoadTopic = (newTopic) => {
+      fetch(`/api/topics/photos/${newTopic.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch({
+            type: ACTIONS.SET_PHOTO_DATA,
+            payload: { data },
+          });
+        })
+        .catch((err) => {
+          console.log("Error fetching topic data");
         });
-      })
-      .catch((err) => {
-        console.log("Error fetching topic data");
+    };
+
+  
+    const onClosePhotoDetailsModal = () => {
+      dispatch({
+        type: ACTIONS.CLOSE_PHOTO_DETAILS,
+        payload: { showDetails: false },
       });
-  };
+    };
 
   // Destructuring state directly in the return statement
 
