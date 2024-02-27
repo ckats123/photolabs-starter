@@ -82,17 +82,20 @@ useEffect(() => {
 , []);
 
 //  useEffect(() => {
+//    // fetch photo and topic from api 
 //    fetch("/api/photos")
-//      .then((res) => res.json())
-//      .then((data) => {
-//        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
-//      });
-//    fetch("/api/topics")
-//      .then((res) => res.json())
-//      .then((data) => {
-//        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
-//      });
-//  }, []);
+//       .then((response) => response.json())
+//       .then((data) => {
+//         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
+//       });
+
+//     fetch("/api/topics")
+//       .then((response) => response.json())
+//       .then((data) => {
+//         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
+//       });
+//   }, []);
+
 
   //when user selects photo
   const setPhotoSelected = (photo) => {
