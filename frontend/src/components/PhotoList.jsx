@@ -11,9 +11,7 @@ const PhotoList = (props) => {
         data={photo}
         favoritedPhotos={props.favoritedPhotos}
         updateToFavPhotoIds={props.updateToFavPhotoIds}
-        onPhotoClick={props.onPhotoClick}
-        activePhoto={props.activePhoto}
-        setActivePhoto={props.setActivePhoto}
+        setPhotoSelected={props.setPhotoSelected}
       />
     );
   });
