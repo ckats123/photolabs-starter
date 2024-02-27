@@ -1,7 +1,7 @@
 // hooks/useApplicationData.js
 import { useReducer, useEffect } from "react";
-import photos from "mocks/photos";
-import topics from "mocks/topics";
+// import photos from "mocks/photos";
+// import topics from "mocks/topics";
 
 const ACTIONS = {
   FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
@@ -132,11 +132,12 @@ const useApplicationData = () => {
   return {
     state,
 
-    activePhoto,
-    showModal,
-    favoritedPhotos,
+    // activePhoto,
+    // showModal,
+    // favoritedPhotos,
     setPhotoSelected,
     updateToFavPhotoIds,
+    onLoadTopic,
     onClosePhotoDetailsModal,
   };
 };

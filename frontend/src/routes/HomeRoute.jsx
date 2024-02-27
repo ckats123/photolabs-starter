@@ -19,10 +19,10 @@ const HomeRoute = (props) => {
     onLoadTopic,
   } = props;
 
-  // logs favoritedPhotos
-  useEffect(() => {
-    console.log("fav photos", favoritedPhotos);
-  }, [favoritedPhotos]);
+  // // logs favoritedPhotos
+  // useEffect(() => {
+  //   console.log("fav photos", favoritedPhotos);
+  // }, [favoritedPhotos]);
 
   // // Retrieve favoritedPhotos from local storage on mount
   // useEffect(() => {
@@ -63,7 +63,7 @@ const HomeRoute = (props) => {
       <TopNavigation
         topics={topics}
         isFavorited={favoritedPhotos.length > 0}
-        onTopicLoad={onLoadTopic}
+        onLoadTopic={onLoadTopic}
       />
       <PhotoList
         photos={photos}
