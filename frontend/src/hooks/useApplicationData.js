@@ -1,5 +1,5 @@
 // hooks/useApplicationData.js
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
@@ -22,6 +22,7 @@ function reducer(state, action) {
           action.payload.photoId,
         ],
       };
+
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {
         ...state,
@@ -29,28 +30,33 @@ function reducer(state, action) {
           (id) => id !== action.payload.photoId
         ),
       };
+
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.payload.newPhotos,
+        photoData: action.payload.data,
       };
+
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topics: action.payload.newTopics,
+        topicData: action.payload.data,
       };
+
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
         activePhoto: action.payload.selectedPhoto,
         modalVisibility: true,
       };
+
     case ACTIONS.CLOSE_PHOTO_DETAILS:
       return {
         ...state,
         activePhoto: null,
         modalVisibility: action.payload.showDetails,
       };
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -60,14 +66,33 @@ function reducer(state, action) {
 
 const useApplicationData = () => {
   const initialState = {
-    photos: photos,
-    topics: topics,
+    photoData: [],
+    topicData: [],
     activePhoto: null,
     showModal: false,
     favoritedPhotos: [],
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+useEffect(() => {
+  dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data: photos } });
+  dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data: topics } });
+}
+, []);
+
+//  useEffect(() => {
+//    fetch("/api/photos")
+//      .then((res) => res.json())
+//      .then((data) => {
+//        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
+//      });
+//    fetch("/api/topics")
+//      .then((res) => res.json())
+//      .then((data) => {
+//        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
+//      });
+//  }, []);
 
   //when user selects photo
   const setPhotoSelected = (photo) => {

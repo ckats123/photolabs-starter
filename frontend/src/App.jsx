@@ -1,5 +1,6 @@
 // App.jsx
-import React from "react";
+import React from "react"; // Add this import statement
+import { useState } from "react";
 import "./App.scss";
 import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
@@ -15,11 +16,12 @@ const App = () => {
 
   const { photos, topics, activePhoto, showModal, favoritedPhotos } =
     state;
-return (
+
+  return (
     <div className="App">
       <HomeRoute
-        photos={photos}
-        topics={topics}
+        photos={state.photoData}
+        topics={state.topicData}
         setModalVisibility={setPhotoSelected}
         setActivePhoto={setPhotoSelected}
         favoritedPhotos={favoritedPhotos}
@@ -27,7 +29,7 @@ return (
         setFavoritedPhotos={setPhotoSelected}
       />
       <PhotoDetailsModal
-        photos={state.photos}
+        photos={state.photoData || photos}
         activePhoto={state.activePhoto}
         setActivePhoto={setPhotoSelected}
         favoritedPhotos={state.favoritedPhotos}
