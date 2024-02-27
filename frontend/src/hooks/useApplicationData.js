@@ -75,10 +75,9 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-
- useEffect(() => {
-   // fetch photo and topic from api 
-   fetch("/api/photos")
+  useEffect(() => {
+    // fetch photo and topic from api
+    fetch("/api/photos")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
@@ -90,7 +89,6 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
       });
   }, []);
-
 
   //when user selects photo
   const setPhotoSelected = (photo) => {
@@ -106,11 +104,19 @@ const useApplicationData = () => {
   };
 
   //close photo details modal
-  const onClosePhotoDetailsModal = () => {
-    dispatch({
-      type: ACTIONS.CLOSE_PHOTO_DETAILS,
-      payload: { showDetails: false },
-    });
+  // http://localhost:8001/api/topics/photos/:topic_id
+  const onClosePhotoDetailsModal = (newTopic) => {
+    fetch(`/api/topics/photos/${newTopic.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: { data },
+        });
+      })
+      .catch((err) => {
+        console.log("Error fetching topic data");
+      });
   };
 
   // Destructuring state directly in the return statement
