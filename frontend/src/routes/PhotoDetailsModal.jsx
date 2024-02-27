@@ -1,7 +1,9 @@
 // PhotoDetailsModal.jsx
 import React from "react";
+
 import "../styles/PhotoDetailsModal.scss";
 import "../styles/PhotoFavButton.scss";
+
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
@@ -14,7 +16,7 @@ const PhotoDetailsModal = (props) => {
     activePhoto,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
-    modalVisibility,
+    // modalVisibility,
     toggleFavourite,
   } = props;
 
@@ -29,6 +31,8 @@ const PhotoDetailsModal = (props) => {
 
   // Logging activePhoto to the console
   console.log(activePhoto);
+
+  
 
   return (
     <div className="photo-details-modal">
@@ -72,6 +76,7 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal__header">
           Similar Photos
         </div>
+
         <div className="photo-details-modal__images">
           <PhotoList
             photos={activePhoto.similar_photos}
@@ -80,6 +85,7 @@ const PhotoDetailsModal = (props) => {
             onPhotoSelect={onPhotoSelect}
           />
         </div>
+
       </div>
     </div>
   );
