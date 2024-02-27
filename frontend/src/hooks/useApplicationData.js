@@ -67,33 +67,35 @@ const useApplicationData = () => {
     favoritedPhotos: [],
   };
 
-  const [state, setState] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   //when user selects photo
   const setPhotoSelected = (photo) => {
-  dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
+    dispatch({
+      type: ACTIONS.SELECT_PHOTO,
+      payload: { selectedPhoto: photo },
+    });
   };
 
-// set favorite photo
+  // set favorite photo
   const updateToFavPhotoIds = (photoId) => {
     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
   };
 
   //close photo details modal
   const onClosePhotoDetailsModal = () => {
-    dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS, payload: { showDetails: false } });
+    dispatch({
+      type: ACTIONS.CLOSE_PHOTO_DETAILS,
+      payload: { showDetails: false },
+    });
   };
 
-
   // Destructuring state directly in the return statement
-  
 
-  const { activePhoto, showModal, favoritedPhotos } =
-    state;
+  const { activePhoto, showModal, favoritedPhotos } = state;
 
   return {
     state,
-
 
     activePhoto,
     showModal,
