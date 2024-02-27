@@ -1,56 +1,98 @@
 // hooks/useApplicationData.js
-import { useState } from "react";
+import { useReducer } from "react";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
+const ACTIONS = {
+  FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
+  FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPIC_DATA: "SET_TOPIC_DATA",
+  SELECT_PHOTO: "SELECT_PHOTO",
+  CLOSE_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.FAV_PHOTO_ADDED:
+      return {
+        ...state,
+        favoritedPhotos: [
+          ...state.favoritedPhotos,
+          action.payload.photoId,
+        ],
+      };
+    case ACTIONS.FAV_PHOTO_REMOVED:
+      return {
+        ...state,
+        favoritedPhotos: state.favoritedPhotos.filter(
+          (id) => id !== action.payload.photoId
+        ),
+      };
+    case ACTIONS.SET_PHOTO_DATA:
+      return {
+        ...state,
+        photos: action.payload.newPhotos,
+      };
+    case ACTIONS.SET_TOPIC_DATA:
+      return {
+        ...state,
+        topics: action.payload.newTopics,
+      };
+    case ACTIONS.SELECT_PHOTO:
+      return {
+        ...state,
+        activePhoto: action.payload.selectedPhoto,
+        modalVisibility: true,
+      };
+    case ACTIONS.CLOSE_PHOTO_DETAILS:
+      return {
+        ...state,
+        activePhoto: null,
+        modalVisibility: action.payload.showDetails,
+      };
+    default:
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      );
+  }
+}
+
 const useApplicationData = () => {
-  const [state, setState] = useState({
+  const initialState = {
     photos: photos,
     topics: topics,
     activePhoto: null,
     showModal: false,
     favoritedPhotos: [],
-  });
+  };
 
+  const [state, setState] = useReducer(reducer, initialState);
+
+  //when user selects photo
   const setPhotoSelected = (photo) => {
-    setState((prev) => ({
-      ...prev,
-      activePhoto: photo,
-      showModal: true,
-    }));
+  dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
   };
 
+// set favorite photo
   const updateToFavPhotoIds = (photoId) => {
-    setState((prev) => ({
-      ...prev,
-      favoritedPhotos: prev.favoritedPhotos.includes(photoId)
-        ? prev.favoritedPhotos.filter((id) => id !== photoId)
-        : [...prev.favoritedPhotos, photoId],
-    }));
+    dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
   };
 
+  //close photo details modal
   const onClosePhotoDetailsModal = () => {
-    setState((prev) => ({
-      ...prev,
-      activePhoto: null,
-      showModal: false,
-    }));
+    dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS, payload: { showDetails: false } });
   };
 
-//it overides the import at the top
+
   // Destructuring state directly in the return statement
   
-  // i see, so the below is okay? and just fix app.js?
-  //yes
-  //you can siply pass the state to the returned object
+
   const { activePhoto, showModal, favoritedPhotos } =
     state;
 
   return {
-    state,// the entire state is returned
-    // ok, so the bottom can be deleted? 
-    //yes please, except the functions
-    //the functions are not part of the state, yes y
+    state,
 
 
     activePhoto,
