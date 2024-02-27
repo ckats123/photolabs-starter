@@ -22,7 +22,7 @@ const FavIcon = ({ displayAlert, isFav }) => {
           cx="21"
           cy="4"
           r="2.75"
-          fill="0ee84c"
+        fill="lightgreen" 
           stroke="#C80000"
           strokeWidth="0.5"
         />
