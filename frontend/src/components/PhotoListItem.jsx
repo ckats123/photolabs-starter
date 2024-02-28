@@ -1,60 +1,50 @@
 // frontend/src/components/PhotoListItem.jsx
 import React from "react";
+
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-
 const PhotoListItem = (props) => {
   const {
-    // photos, 
-    data, 
-    favoritedPhotos, 
-   updateToFavPhotoIds,
-   onPhotoClick,
+    data,
+    favoritedPhotos,
+    updateToFavPhotoIds,
+    onPhotoSelect,
   } = props;
-  
-  // const isFavorited = favoritedPhotos.some((photo) => photo.id === data.id);
-
-
 
   const openModal = () => {
-    setPhotoSelected(data);
-    // onPhotoClick();
-  }
+    onPhotoSelect(data);
+  };
 
   return (
     <article className="photo-list__item">
-
       <PhotoFavButton
-       updateToFavPhotoIds={updateToFavPhotoIds}
-        setFavoritedPhotos={props.setFavoritedPhotos}
+        updateToFavPhotoIds={updateToFavPhotoIds}
         favoritedPhotos={favoritedPhotos}
-        photoData={data} 
+        photo={data}
       />
-
       <img
         src={data.urls.regular}
-        alt={`Photo by ${data.user.username}`}
+        alt="image from Unsplash.com"
         className="photo-list__image"
         onClick={openModal}
       />
+      
       <div className="photo-list__user-details">
         <img
           src={data.user.profile}
-          alt={`Profile of ${data.user.username}`}
+          alt="user profile picture"
           className="photo-list__user-profile"
         />
-        <div className="photo-list__user-info">{`Photo ID: ${data.id}`}</div>
-        <div className="photo-list__user-username">
-          {`Photographer: ${data.user.username}`}
+        <div className="photo-list__user-info">
+          <div className="photo-list__user-name">{data.user.name}</div>
+          <div className="photo-list__user-location">
+            {`Location: ${data.location.city}, ${data.location.country}`}
           </div>
-        <div className="photo-list__user-location">
-          {`Location: ${data.location.city}, ${data.location.country}`}
-          </div>
+        </div>
       </div>
     </article>
   );
 };
-
 
 export default PhotoListItem;
