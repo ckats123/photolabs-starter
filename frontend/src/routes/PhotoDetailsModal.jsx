@@ -7,47 +7,49 @@ import "../styles/PhotoFavButton.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
-import { on } from "events";
+// import { on } from "events";
 
 const PhotoDetailsModal = (props) => {
   const {
     photos,
     favoritedPhotos,
     activePhoto,
+    onPhotoSelect,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
-    // modalVisibility,
-    toggleFavourite,
   } = props;
 
   const handleCloseModal = () => {
     onClosePhotoDetailsModal();
-  }
+  };
 
-  // Adding a null check for activePhoto
-  if (!activePhoto || !modalVisibility) {
-    return null;
-  }
+  // // Adding a null check for activePhoto
+  // if (!activePhoto || !modalVisibility) {
+  //   return null;
+  // }
 
-  // Logging activePhoto to the console
-  console.log(activePhoto);
+  // // Logging activePhoto to the console
+  // console.log(activePhoto);
 
-  
+  const similarPhotoArray = Object.values(activePhoto.similar_photos);
+  const similarPhotoIDs = similarPhotoArray.map((photo) => photo.id);
+  const similarPhotos = photos.filter((photo) =>
+    similarPhotoIDs.includes(photo.id)
+  );
+
 
   return (
     <div className="photo-details-modal">
       <button
-        className="photo-details-modal__close-button"
-        onClick={() => setModalVisibility(false)}
-      >
-        <img src={closeSymbol} alt="close symbol" />
+        className="photo-details-modal__close-button">
+        <img src={closeSymbol} alt="Close" onClick={handleCloseModal} />
       </button>
 
       <div className="photo-details-modal__images">
         <PhotoFavButton
           updateToFavPhotoIds={updateToFavPhotoIds}
           photo={activePhoto}
-          favorites={favoritedPhotos}
+          favoritedPhotos={favoritedPhotos}
         />
 
         <img
@@ -58,7 +60,7 @@ const PhotoDetailsModal = (props) => {
 
         <div className="photo-details-modal__photographer-details">
           <img
-            src={activePhoto.user.profile_image.small}
+            src={activePhoto.user.profile}
             alt={activePhoto.user.name}
             className="photo-details-modal__photographer-profile"
           />
@@ -72,23 +74,22 @@ const PhotoDetailsModal = (props) => {
             </div>
           </div>
         </div>
-
-        <div className="photo-details-modal__header">
-          Similar Photos
-        </div>
+      </div>
 
         <div className="photo-details-modal__images">
-          <PhotoList
-            photos={activePhoto.similar_photos}
-            favoritedPhotos={favoritedPhotos} 
-            updateToFavPhotoIds={updateToFavPhotoIds}
-            onPhotoSelect={onPhotoSelect}
-          />
-        </div>
-
-      </div>
+          <h2 className="photo-details-modal__header">Similar Photos</h2>
+          </div>
+          {activePhoto && activePhoto.similar_photos && (
+            <PhotoList
+              photos={similarPhotos}
+              favoritedPhotos={favoritedPhotos}
+              updateToFavPhotoIds={updateToFavPhotoIds}
+              onPhotoSelect={onPhotoSelect}
+            />  
+          )}
     </div>
   );
-};
+}
+
 
 export default PhotoDetailsModal;
