@@ -7,7 +7,6 @@ import "../styles/PhotoFavButton.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
-// import { on } from "events";
 
 const PhotoDetailsModal = (props) => {
   const {

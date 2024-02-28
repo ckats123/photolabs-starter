@@ -1,6 +1,5 @@
 // App.jsx
-import React from "react"; // Add this import statement
-// import { useState } from "react";
+import React from "react";
 import "./App.scss";
 import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
@@ -15,9 +14,6 @@ const App = () => {
     onLoadTopic,
   } = useApplicationData();
 
-  // const { photos, topics, activePhoto, showModal, favoritedPhotos } =
-  //   state;
-
   return (
     <div className="App">
       <HomeRoute
@@ -28,7 +24,7 @@ const App = () => {
         onPhotoSelect={onPhotoSelect}
         onLoadTopic={onLoadTopic}
       />
-      {state.modalVisible && (
+      {state.modalVisibility && (
       <PhotoDetailsModal
         photos={state.photoData}
         activePhoto={state.activePhoto}
