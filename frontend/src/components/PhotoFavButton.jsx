@@ -4,26 +4,27 @@ import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 function PhotoFavButton(props) {
-  const { photoData, favoritedPhotos, updateToFavPhotoIds } = props;
+  const { photo, favoritedPhotos, updateToFavPhotoIds } = props;
 
-  const [isFav, setIsFav] = useState(
-    favoritedPhotos.some((photo) => photo.id === photoData.id)
+  const [favorited, setFavorited] = useState(
+    favoritedPhotos.some((favPhoto) => favPhoto === photo.id)
   );
 
-  useEffect(() => {
-    setIsFav(
-      favoritedPhotos.some((photo) => photo.id === photoData.id)
-    );
-  }, [favoritedPhotos, photoData.id]);
 
-  const handleFavClick = useCallback(() => {
-    updateToFavPhotoIds(photoData.id);
-  }, [updateToFavPhotoIds, photoData.id]);
+  useEffect(() => {
+    setFavorited(
+      favoritedPhotos.some((favPhoto) => favPhoto === photo.id)
+    );
+  }, [favoritedPhotos, photo]);
+
+  const handleClick = () => {
+    updateToFavPhotoIds(photo.id);
+  };
 
   return (
-    <div className="photo-list__fav-icon" onClick={handleFavClick}>
+    <div className="photo-list__fav-icon" onClick={handleClick}>
       <div className="photo-list__fav-icon-svg">
-        <FavIcon isFav={isFav} />
+        <FavIcon selected={favorited} />
       </div>
     </div>
   );
