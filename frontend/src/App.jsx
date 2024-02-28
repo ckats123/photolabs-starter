@@ -1,6 +1,6 @@
 // App.jsx
 import React from "react"; // Add this import statement
-import { useState } from "react";
+// import { useState } from "react";
 import "./App.scss";
 import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
@@ -10,13 +10,13 @@ const App = () => {
   const {
     state,
     updateToFavPhotoIds,
-    setPhotoSelected,
+    onPhotoSelect,
     onClosePhotoDetailsModal,
     onLoadTopic,
   } = useApplicationData();
 
-  const { photos, topics, activePhoto, showModal, favoritedPhotos } =
-    state;
+  // const { photos, topics, activePhoto, showModal, favoritedPhotos } =
+  //   state;
 
   return (
     <div className="App">
@@ -25,7 +25,7 @@ const App = () => {
         topics={state.topicData}
         favoritedPhotos={state.favoritedPhotos}
         updateToFavPhotoIds={updateToFavPhotoIds}
-        setFavoritedPhotos={setPhotoSelected}
+        onPhotoSelect={onPhotoSelect}
         onLoadTopic={onLoadTopic}
       />
       {state.modalVisible && (
@@ -33,7 +33,7 @@ const App = () => {
         photos={state.photoData}
         activePhoto={state.activePhoto}
         favoritedPhotos={state.favoritedPhotos}
-        setPhotoSelected={setPhotoSelected}
+        onPhotoSelect={onPhotoSelect}
         updateToFavPhotoIds={updateToFavPhotoIds}
         onClosePhotoDetailsModal={onClosePhotoDetailsModal}
       />
