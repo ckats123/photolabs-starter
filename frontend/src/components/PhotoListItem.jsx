@@ -13,7 +13,7 @@ const PhotoListItem = (props) => {
   } = props;
 
   const openModal = () => {
-    onPhotoSelect(data);
+    onPhotoSelect(data); console.log(data);
   };
 
   return (
@@ -29,7 +29,7 @@ const PhotoListItem = (props) => {
         className="photo-list__image"
         onClick={openModal}
       />
-      
+
       <div className="photo-list__user-details">
         <img
           src={data.user.profile}
@@ -37,7 +37,9 @@ const PhotoListItem = (props) => {
           className="photo-list__user-profile"
         />
         <div className="photo-list__user-info">
-          <div className="photo-list__user-name">{data.user.name}</div>
+          <div className="photo-list__user-name">
+            {data.user.name}
+          </div>
           <div className="photo-list__user-location">
             {`Location: ${data.location.city}, ${data.location.country}`}
           </div>

@@ -121,7 +121,7 @@ const useApplicationData = () => {
       });
   };
 
-  // close photo details modal
+  
   const onClosePhotoDetailsModal = () => {
     dispatch({
       type: ACTIONS.CLOSE_PHOTO_DETAILS,

@@ -22,14 +22,6 @@ const PhotoDetailsModal = (props) => {
     onClosePhotoDetailsModal();
   };
 
-  // // Adding a null check for activePhoto
-  // if (!activePhoto || !modalVisibility) {
-  //   return null;
-  // }
-
-  // // Logging activePhoto to the console
-  // console.log(activePhoto);
-
   const similarPhotoArray = Object.values(activePhoto.similar_photos);
   const similarPhotoIDs = similarPhotoArray.map((photo) => photo.id);
   const similarPhotos = photos.filter((photo) =>
@@ -68,8 +60,8 @@ const PhotoDetailsModal = (props) => {
               {activePhoto.user.name}
             </div>
             <div className="photo-details-modal__photographer-location">
-              {activePhoto.user.location.city},
-              {activePhoto.user.location.country}
+              {activePhoto.location.city},
+              {activePhoto.location.country}
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ const PhotoList = (props) => {
         data={photo}
         favoritedPhotos={props.favoritedPhotos}
         updateToFavPhotoIds={props.updateToFavPhotoIds}
-        setPhotoSelected={props.setPhotoSelected}
+        onPhotoSelect={props.onPhotoSelect}
       />
     );
   });
