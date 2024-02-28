@@ -1,7 +1,5 @@
 // hooks/useApplicationData.js
 import { useReducer, useEffect } from "react";
-// import photos from "mocks/photos";
-// import topics from "mocks/topics";
 
 const ACTIONS = {
   FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
@@ -69,7 +67,7 @@ const useApplicationData = () => {
     photoData: [],
     topicData: [],
     activePhoto: null,
-    showModal: false,
+    modalVisibility: false,
     favoritedPhotos: [],
   };
 
@@ -78,20 +76,20 @@ const useApplicationData = () => {
   useEffect(() => {
     // fetch photo and topic from api
     fetch("/api/photos")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
       });
 
     fetch("/api/topics")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
       });
   }, []);
 
   //when user selects photo
-  const setPhotoSelected = (photo) => {
+  const onPhotoSelect = (photo) => {
     dispatch({
       type: ACTIONS.SELECT_PHOTO,
       payload: { selectedPhoto: photo },
@@ -100,42 +98,40 @@ const useApplicationData = () => {
 
   // set favorite photo
   const updateToFavPhotoIds = (photoId) => {
-    dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
+    dispatch({
+      type: state.favoritedPhotos.includes(photoId)
+        ? ACTIONS.FAV_PHOTO_REMOVED
+        : ACTIONS.FAV_PHOTO_ADDED,
+      payload: { photoId },
+    });
   };
 
-    const onLoadTopic = (newTopic) => {
-      fetch(`/api/topics/photos/${newTopic.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch({
-            type: ACTIONS.SET_PHOTO_DATA,
-            payload: { data },
-          });
-        })
-        .catch((err) => {
-          console.log("Error fetching topic data");
+  // fetch photos for selected topic
+  const onLoadTopic = (newTopic) => {
+    fetch(`/api/topics/photos/${newTopic.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: { data },
         });
-    };
-
-  
-    const onClosePhotoDetailsModal = () => {
-      dispatch({
-        type: ACTIONS.CLOSE_PHOTO_DETAILS,
-        payload: { showDetails: false },
+      })
+      .catch((err) => {
+        console.log("Error fetching topic data");
       });
-    };
+  };
 
-  // Destructuring state directly in the return statement
-
-  const { activePhoto, showModal, favoritedPhotos } = state;
+  // close photo details modal
+  const onClosePhotoDetailsModal = () => {
+    dispatch({
+      type: ACTIONS.CLOSE_PHOTO_DETAILS,
+      payload: { showDetails: false },
+    });
+  };
 
   return {
     state,
-
-    // activePhoto,
-    // showModal,
-    // favoritedPhotos,
-    setPhotoSelected,
+    onPhotoSelect,
     updateToFavPhotoIds,
     onLoadTopic,
     onClosePhotoDetailsModal,
